@@ -5,11 +5,7 @@ dotenv.config();
 
 const connectDB = async (): Promise<void> => {
   try {
-    const mongoURI = process.env.MONGO_URI as string;
-    if (!mongoURI) {
-      throw new Error("MONGO_URI is missing in .env file");
-    }
-
+    const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/miniProjekt3";
     await mongoose.connect(mongoURI);
     console.log("✅ MongoDB connected successfully!");
   } catch (error) {
