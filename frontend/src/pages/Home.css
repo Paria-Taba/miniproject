@@ -1,0 +1,17 @@
+a{
+	background-color: pink;
+	padding: 20px;
+	margin: 20px;
+	border: 2px solid rgb(255, 67, 98);
+	border-radius: 10px;
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+}
+.home-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+}
