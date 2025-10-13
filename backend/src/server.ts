@@ -9,6 +9,11 @@ import connectDB from "./configs/connectDb.js"
 import registerRouter from "./Routes/registerRoute.js"
 connectDB()
 
+app.use("/",(req,res,next)=>{
+console.log(`method: ${req.method}, url: ${req.url}`)
+next()
+})
+
 app.use(cors({
   origin: "http://localhost:5173", // your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // include OPTIONS
