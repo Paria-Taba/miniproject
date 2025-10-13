@@ -2,6 +2,9 @@ import { Router } from "express";
 import type { Request,Response } from "express";
 import userModel from "../configs/models/userModel.js"
 import express from "express"
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+dotenv.config()
 const route=Router()
 route.use(express.json());
 
@@ -16,9 +19,18 @@ route.post("/", async (req: Request, res: Response) => {
 
     const newUser = await userModel.create({ userName, password });
 
-    res.status(201).json({
+const token = jwt.sign(
+  { userName: newUser.userName, id: newUser._id },
+  process.env.JWT_SECRET!,
+  { expiresIn: "1h" }
+);
+   res.status(201).json({
       message: "User registered successfully",
-      user: newUser,
+      user: {
+        id: newUser._id,
+        userName: newUser.userName,
+      },
+      token,
     });
   } catch (error) {
     res.status(500).json({
