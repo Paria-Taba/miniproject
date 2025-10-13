@@ -23,7 +23,7 @@ function Register(){
 			return
 		}
 		const result=await response.json()
-		console.log(result)
+		alert("User registered successfully")
 
 	}
 	return(

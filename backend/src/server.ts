@@ -14,12 +14,7 @@ console.log(`method: ${req.method}, url: ${req.url}`)
 next()
 })
 
-app.use(cors({
-  origin: "http://localhost:5173", // your frontend URL
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // include OPTIONS
-  allowedHeaders: ["Content-Type", "Authorization"], // headers your frontend sends
-  credentials: true
-}));
+app.use(cors());
 
 app.use("/register",registerRouter)
 
