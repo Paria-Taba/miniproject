@@ -8,7 +8,7 @@
     "backend-build": "tsc --project backend/tsconfig.json",
     "backend-start": "node backend/dist/server.js",
     "frontend-start": "vite",
-	"dev": "npm run backend-start & npm run frontend-start"
+    "dev": "npm run backend-start & npm run frontend-start"
   },
   "keywords": [],
   "author": "",

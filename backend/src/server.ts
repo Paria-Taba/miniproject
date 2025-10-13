@@ -1,12 +1,20 @@
 import express from "express"
 const app=express()
 import dotenv from "dotenv"
+import cors from "cors"
 dotenv.config()
 const port=process.env.PORT
 import connectDB from "./configs/connectDb.js"
 
 import registerRouter from "./Routes/registerRoute.js"
 connectDB()
+
+app.use(cors({
+  origin: "http://localhost:5173", // your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // include OPTIONS
+  allowedHeaders: ["Content-Type", "Authorization"], // headers your frontend sends
+  credentials: true
+}));
 
 app.use("/register",registerRouter)
 
