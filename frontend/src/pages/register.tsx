@@ -6,11 +6,19 @@ function Register(){
 	const[password,setPassword]=useState("")
 	const[data,setData]=useState([])
 	interface User{
+		_id:string
 		userName:string,
 		password:string
 	}
+	async function getData() {
+		const response=await fetch("http://localhost:7000/register")
+		const result=await response.json()
+		setData(result)
+		console.log(result)
+	}
 	async function submitHandler(){
 		const user:User={
+			_id: "",
 			userName,
 			password
 		}
@@ -31,10 +39,31 @@ function Register(){
 		
 	}
 	async function getHandler(){
-		const response=await fetch("http://localhost:7000/register")
-		const result=await response.json()
-		setData(result)
-		console.log(result)
+		getData()
+		
+	}
+	
+	async function  deleteHandler(id:string) {
+		 try {
+    const response = await fetch(`http://localhost:7000/register/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      console.error("Failed to delete user");
+      return;
+    }
+
+    const result = await response.json();
+    console.log("Deleted user:", result);
+
+    getData()
+    
+    alert("User deleted successfully");
+  } catch (error) {
+    console.error("Error deleting user:", error);
+  }
 		
 	}
 	return(
@@ -54,7 +83,7 @@ function Register(){
 		{data.map((user: User, index) => (
 			<div key={index}>
 			<span>Username: {user.userName}</span> | <span>Password: {user.password}</span>
-			<button>Delete</button>
+			<button onClick={() => deleteHandler(user._id)}>Delete</button>
 			<button>Edit</button>
 			</div>
 			
