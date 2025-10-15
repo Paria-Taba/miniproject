@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import "../pages/Home.css"
 import Header from "../components/header"
+
 function Home(){
 	return(
 		<div className="home-container">

@@ -17,6 +17,11 @@ function Register(){
 		console.log(result)
 	}
 	async function submitHandler(){
+		 if (!userName.trim() || !password.trim()) {
+    alert("Please enter both username and password.");
+    return;
+  }
+
 		const user:User={
 			_id: "",
 			userName,
@@ -32,6 +37,7 @@ function Register(){
 			console.log("can not post user in database")
 			return
 		}
+	
 		const result=await response.json()
 		alert("User registered successfully")
 		setPassword("")
@@ -68,6 +74,7 @@ function Register(){
 	}
 	return(
 		<div className="register-container">
+				<NavLink to={"/"}>Home</NavLink>
 		<h1>Register yourself !</h1>
 		<div>
 		<label htmlFor="userName">Username:</label>
@@ -78,7 +85,7 @@ function Register(){
 		<input type="text"  id="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 		</div>
 		<button onClick={submitHandler}>Submit</button>
-		<NavLink to={"/"}>Home</NavLink>
+	
 		<button onClick={getHandler}>Get all users</button>
 		{data.map((user: User, index) => (
 			<div key={index}>

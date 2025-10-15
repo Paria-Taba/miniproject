@@ -3,6 +3,7 @@ import React from "react";
 import { HashRouter,Route,Routes } from "react-router-dom";
 import Register from "./pages/register";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 const App: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const App: React.FC = () => {
 	<Routes>
 		<Route path="/" element={<Home></Home>}></Route>
 		<Route path="/register" element={<Register></Register>}></Route>
+			<Route path="/login" element={<Login></Login>}></Route>
 	</Routes>
    </HashRouter>
   );
