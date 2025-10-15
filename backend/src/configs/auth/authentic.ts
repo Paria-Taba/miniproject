@@ -12,18 +12,18 @@ async function authentic (req:Request,res:Response,next:NextFunction){
     const user = await userModel.findOne({ userName });
 
     if (!user) {
-      return res.status(400).json({ message: "Username saknas" });
+      return res.status(400).json({ message: "This username and password not register yet,please check it!" });
     }
+	
 
-    // Här kan du även kontrollera lösenordet om du vill
-    // t.ex. bcrypt.compare(password, user.password)
+    (req as any).user = user;
 
-    next(); 
+    next(); // ✅ bara ett anrop här 
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
 
-next()
+
 }
 
 export default authentic
